@@ -1,22 +1,46 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+// import '../imports/ui/body.js';
 
-import './main.html';
-
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+Router.route('/', {
+  name: 'home'
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
+Router.route('/posts', {
+  controller: 'PostController',
+  action: 'index'
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+Router.route('/posts/:_id', {
+  controller: 'PostController',
+  action: 'show'
 });
+
+if (Meteor.isClient) {
+  ApplicationController = RouteController.extend({
+    layoutTemplate: 'AppLayout',
+
+    onBeforeAction: function () {
+      console.log('app before hook!');
+      this.next();
+    },
+
+    action: function () {
+      console.log('this should be overridden!');
+    }
+  });
+
+  HomeController = ApplicationController.extend({
+    action: function () {
+      this.render('Home');
+    }
+  });
+
+  PostController = ApplicationController.extend({
+    show: function () {
+      this.render('PostShow');
+    },
+
+    index: function () {
+      this.render('PostIndex');
+    }
+  });
+}

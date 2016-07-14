@@ -1,25 +1,37 @@
-<head>
-  <title>Mafioso</title>
+<!-- <head>
+  <title>simple</title>
+</head>
+ -->
+
+ <head>
+  <title>route_controllers</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="AppLayout">
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="/posts">/posts</a></li>
+        <li><a href="/posts/1">/posts/1</a></li>
+      </ul>
+    </nav>
+    <article>
+      {{> yield}}
+    </article>
+  </div>
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+<template name="Home">
+  <h1>Home</h1>
+</template>
+
+<template name="PostIndex">
+  <h1>Post Index</h1>
+</template>
+
+<template name="PostShow">
+  <h1>Post Show</h1>
 </template>
