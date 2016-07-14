@@ -1,37 +1,100 @@
-<!-- <head>
-  <title>simple</title>
-</head>
- -->
-
- <head>
-  <title>route_controllers</title>
+<head>
+    <title>Mafioso</title>
 </head>
 
 <body>
 </body>
 
-<template name="AppLayout">
-  <div class="container">
-    <nav>
-      <ul>
-        <li><a href="/posts">/posts</a></li>
-        <li><a href="/posts/1">/posts/1</a></li>
-      </ul>
-    </nav>
-    <article>
-      {{> yield}}
-    </article>
-  </div>
+
+<template name="main">
+    <div class="container">
+        <div class="main-content">
+            {{> Template.dynamic template=whichView}}
+    <!--         <hr> -->
+            <!-- {{> footer }} -->
+        </div>
+    </div>
+</template>
+<!-- 
+        <nav>
+            <ul>
+                <li><a href="/posts">/posts</a>
+                </li>
+                <li><a href="/posts/1">/posts/1</a>
+                </li>
+            </ul>
+        </nav> -->
+ <!--        <article>
+            {{> yield}}
+        </article> -->
+
+
+<template name="startMenu">
+    <div class="container text-center">
+
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <h3 class="text-center mafiosotitle">
+                      The Mafia welcomes you.
+                    </h3>
+                    <h4 class="text-center mafiosotitle">
+                      Sicily, 1832
+                    </h4>
+                    <hr>
+                    <div class="text-center" id="nameEntry">
+                        <input id="playerName" name="playerName" placeholder="What should we call you?" type="text" class="form-control">
+                    
+                    </div>
+                    <br/>
+                    <div id="joinroom" class="hidden">
+                        <div class="input-group">
+                            <input id="roomid" name="playerName" placeholder="Enter room code..." type="text" class="form-control">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Join</button>
+                            </span>
+                        </div>
+                        <br/>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="btn-group">
+                            <button id="btn-new-game" class="btn btn-default">New Game</button>
+                            <button id="btn-join-game" class="btn btn-default">Join Game</button>
+                        </div>
+                    </div>
+
+
+                    <hr>
+
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </template>
 
-<template name="Home">
-  <h1>Home</h1>
+
+
+<template name="AppLayout">
+
+</template>
+
+<template name="Home1">
+    <h1>Home</h1>
 </template>
 
 <template name="PostIndex">
-  <h1>Post Index</h1>
+    <h1>Post Index</h1>
 </template>
 
 <template name="PostShow">
-  <h1>Post Show</h1>
+    <h1>Post Show</h1>
 </template>
