@@ -23,3 +23,6 @@ iron:router
 less
 twbs:bootstrap
 session
+artwells:accounts-guest
+ian:accounts-ui-bootstrap-3
+brettle:accounts-patch-ui

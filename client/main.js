@@ -1,4 +1,9 @@
-
+callme = function() {
+     if (People.find() != undefined) {
+        return People.find().fetch().length;
+    }
+    return 'Well well well...';
+}
 //Generates the access code
 function generateAccessCode(){
     var code = "";
@@ -57,23 +62,20 @@ if (Meteor.isClient) {
   })();
 
   Template.startMenu.events({
-    'click #btn-join-game': function(e){ 
+    'click #btn-join-game': function(e){
+      playerName = $("#playerName").val()
+      if (!playerName)
+          return false;
+
       $("#joinroom").removeClass("hidden");
       console.log($("#roomid").val())
 
 
       Meteor.call( 'insertTaco', 0, 1, 2, 3, ( error ) => {
-      if ( error ) {
-        console.log( error );
-      }
+        if ( error ) {
+          console.log( error );
+        }
       });
-
-
-      // $("#btn-join-game").addClass("hidden");
-      // $("#btn-new-game").addClass("hidden");
-      
-       
-
 
     }, 
 
@@ -92,24 +94,15 @@ if (Meteor.isClient) {
       Meteor.subscribe('games', game.accessCode);
       // $("#btn-join-game").addClass("hidden");
       // $("#btn-new-game").addClass("hidden");
-       Session.set("loading", true);
-       Meteor.subscribe('players', game._id, function onReady(){
-      Session.set("loading", false);
+      Session.set("loading", true);
+      Meteor.subscribe('players', game._id, function onReady(){
+        Session.set("loading", false);
 
-      Session.set("gameID", game._id);
-      Session.set("playerID", player._id);
-      Session.set("currentView", "lobby");
-    });
-
-
+        Session.set("gameID", game._id);
+        Session.set("playerID", player._id);
+        Session.set("currentView", "lobby");
+      });
     }
-
-
-     // 'click #btn-new-game': function (event) {
-     //  var playerName = event.target.playerName.value;
-     //  console.log(playerName)
-     // };
-
 
 
   });
